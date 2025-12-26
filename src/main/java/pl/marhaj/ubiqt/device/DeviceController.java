@@ -2,6 +2,7 @@ package pl.marhaj.ubiqt.device;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.marhaj.ubiqt.device.domain.DeviceFacade;
 import pl.marhaj.ubiqt.device.dto.DeviceCreationDto;
@@ -15,7 +16,8 @@ import java.util.List;
 class DeviceController {
     private final DeviceFacade deviceFacade;
 
-    @PostMapping("devices")
+    @PostMapping("/devices")
+    @ResponseStatus(HttpStatus.CREATED)
     DeviceDto save(@Valid @RequestBody DeviceCreationDto deviceDto) {
         return deviceFacade.addOne(deviceDto);
     }

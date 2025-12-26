@@ -1,9 +1,7 @@
 package pl.marhaj.ubiqt.device.domain;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,8 +11,8 @@ import pl.marhaj.ubiqt.device.dto.DeviceType;
 
 @Builder
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 class Device {
     @Id
@@ -37,5 +35,11 @@ class Device {
                 .macAddress(macAddress)
                 .deviceType(deviceType)
                 .build();
+    }
+
+    Device(DeviceType deviceType, String macAddress, String uplinkMacAddress) {
+        this.deviceType = deviceType;
+        this.macAddress = macAddress;
+        this.uplinkMacAddress = uplinkMacAddress;
     }
 }

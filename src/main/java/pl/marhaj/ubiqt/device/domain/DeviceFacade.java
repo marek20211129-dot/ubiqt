@@ -55,7 +55,8 @@ public class DeviceFacade {
     public TopologyNode getTopologyFrom(String mac) {
         requireNotNull(mac);
         String rootMac = mac.toLowerCase();
-        Device root = deviceRepository.findByMacAddress(rootMac);
+        Device root = deviceRepository.findByMacAddress(rootMac)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found: " + rootMac));
 
         // Build adjacency map: parentMac -> children list
         Map<String, List<Device>> childrenByParent = deviceRepository.findAll().stream()

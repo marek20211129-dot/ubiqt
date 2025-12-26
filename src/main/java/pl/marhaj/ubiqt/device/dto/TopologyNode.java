@@ -15,6 +15,7 @@ public class TopologyNode {
     public TopologyNode(String macAddress) {
         this.macAddress = macAddress;
     }
+
     public void addChild(TopologyNode child) {
         topologyNodes.add(child);
     }

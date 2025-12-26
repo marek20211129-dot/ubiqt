@@ -5,5 +5,5 @@ import pl.marhaj.ubiqt.device.dto.DeviceType;
 import java.util.Map;
 
 interface PiorityOrder {
-    Map<DeviceType,Integer> order();
+    Map<DeviceType, Integer> order();
 }

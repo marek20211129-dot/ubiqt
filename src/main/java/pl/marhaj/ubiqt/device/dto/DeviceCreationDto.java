@@ -1,9 +1,11 @@
 package pl.marhaj.ubiqt.device.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
 import jakarta.validation.constraints.Pattern;
+import lombok.Builder;
+import lombok.Getter;
 
+@Builder
 @Getter
 public class DeviceCreationDto {
     private DeviceType deviceType;
@@ -18,6 +20,6 @@ public class DeviceCreationDto {
     public DeviceCreationDto(DeviceType deviceType, String macAddress, String uplinkMacAddress) {
         this.deviceType = deviceType;
         this.macAddress = macAddress.toLowerCase();
-        this.uplinkMacAddress = (null != uplinkMacAddress)?uplinkMacAddress.toLowerCase():null;
+        this.uplinkMacAddress = (null != uplinkMacAddress) ? uplinkMacAddress.toLowerCase() : null;
     }
 }

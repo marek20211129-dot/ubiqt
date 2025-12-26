@@ -7,19 +7,19 @@ import java.util.stream.Collectors;
 
 class TopologyCreator {
 
-    TopologyNode buildTree(String mac,
+    TopologyNode buildTree(String macAddress,
                            Map<String, List<Device>> childrenByParent,
                            Set<String> visited) {
-        if (!visited.add(mac)) {
-            // cycle detected; stop expanding to avoid infinite loop
-            return new TopologyNode(mac);
+        if (!visited.add(macAddress)) {
+            // cycle detected. Stop - infinite loop
+            return new TopologyNode(macAddress);
         }
-        TopologyNode node = new TopologyNode(mac);
-        List<Device> children = childrenByParent.getOrDefault(mac, List.of());
+        TopologyNode node = new TopologyNode(macAddress);
+        List<Device> children = childrenByParent.getOrDefault(macAddress, List.of());
         for (Device child : children) {
             node.addChild(buildTree(child.getMacAddress(), childrenByParent, visited));
         }
-        visited.remove(mac); // allow same node to appear in other branches when building forest
+        visited.remove(macAddress); // allow same node to appear in other branches when building tree
         return node;
     }
 
