@@ -1,17 +1,17 @@
 package pl.marhaj.ubiqt.device.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.marhaj.ubiqt.device.exception.DeviceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 interface DeviceRepository extends JpaRepository<Device, String> {
-    Device findByMacAddress(String mac);
+    Optional<Device> findByMacAddress(String macAddress);
     boolean existsByMacAddress(String macAddress);
 
-    default Device findOneOrThrow(String mac) {
-        Device device = findByMacAddress(mac);
-        if(null == device) {
-            throw new DeviceNotFoundException(mac);
-        }
-        return device;
+    default Device findOneOrThrow(String macAddress) {
+        return findByMacAddress(macAddress)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found: " + macAddress));
     }
 }
