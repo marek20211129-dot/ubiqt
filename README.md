@@ -40,3 +40,8 @@ and macAddress (sorting order: Gateway > Switch > Access Point)
 -  GET /devices   - list all devices (sorted by GATEWAY-> SWITCH -> ACCESS POINT)
 -  GET /topology -list full topology of mac address nodes as tree
 -  GET /topology/{macAddress} - list topology statrting from specific mac address node
+
+### Run it
+```sh
+mvn spring-boot:run
+```

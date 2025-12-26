@@ -11,7 +11,7 @@ class TopologyCreator {
                            Map<String, List<Device>> childrenByParent,
                            Set<String> visited) {
         if (!visited.add(macAddress)) {
-            // cycle detected. Stop to avoid infinite loop
+            // cycle detected. Stop infinite loop
             return new TopologyNode(macAddress);
         }
         TopologyNode node = new TopologyNode(macAddress);
@@ -19,7 +19,7 @@ class TopologyCreator {
         for (Device child : children) {
             node.addChild(buildTree(child.getMacAddress(), childrenByParent, visited));
         }
-        visited.remove(macAddress); // allow same node to appear in other branches when building forest
+        visited.remove(macAddress); // allow same node to appear in other branches when building tree
         return node;
     }
 
