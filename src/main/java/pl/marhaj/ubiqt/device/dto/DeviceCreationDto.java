@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import jakarta.validation.constraints.Pattern;
 
+@Builder
 @Getter
 public class DeviceCreationDto {
     private DeviceType deviceType;

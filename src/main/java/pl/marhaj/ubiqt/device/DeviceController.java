@@ -16,7 +16,7 @@ import java.util.List;
 class DeviceController {
     private final DeviceFacade deviceFacade;
 
-    @PostMapping("devices")
+    @PostMapping("/devices")
     @ResponseStatus(HttpStatus.CREATED)
     DeviceDto save(@Valid @RequestBody DeviceCreationDto deviceDto) {
         return deviceFacade.addOne(deviceDto);
